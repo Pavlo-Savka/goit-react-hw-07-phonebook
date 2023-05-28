@@ -1,12 +1,19 @@
 import React from 'react';
-import { useMemo } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect, useMemo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchContacts } from 'redux/operations';
 import { getContacts } from 'redux/selectors';
 import { getFilterValue } from 'redux/selectors';
 import ContactItem from '../ContactItem/ContactItem';
 import PropTypes from 'prop-types';
 
 function ContactsList(props) {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
+  
   const contacts = useSelector(getContacts);
   const filter = useSelector(getFilterValue);
   const filteredContacts = useMemo(() => {
