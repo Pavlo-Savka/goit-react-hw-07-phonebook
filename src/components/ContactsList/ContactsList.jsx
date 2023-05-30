@@ -5,9 +5,8 @@ import { fetchContacts } from 'redux/operations';
 import { getContacts } from 'redux/selectors';
 import { getFilterValue } from 'redux/selectors';
 import ContactItem from '../ContactItem/ContactItem';
-import PropTypes from 'prop-types';
 
-function ContactsList(props) {
+function ContactsList() {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -15,10 +14,20 @@ function ContactsList(props) {
   }, [dispatch]);
   
   const contacts = useSelector(getContacts);
+
+  
+  
   const filter = useSelector(getFilterValue);
+
   const filteredContacts = useMemo(() => {
-    return contacts.filter((elem) => (elem.name.toLowerCase().includes(filter.toLowerCase())));
-  }, [contacts, filter]);
+
+    if (contacts.length > 0) {
+      console.log(typeof (contacts));
+      console.log(contacts);
+      return contacts.filter((elem) => (elem.name.toLowerCase().includes(filter.toLowerCase())));
+    }
+    }, [contacts, filter]);
+
       return (
         <ul>
           {filteredContacts.map((i) => (
@@ -33,7 +42,3 @@ function ContactsList(props) {
        }
 
 export default ContactsList;
-
-ContactsList.propTypes = {
-  onDeleteContact: PropTypes.func.isRequired
-};

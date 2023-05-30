@@ -2,12 +2,11 @@ import React from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { getContacts } from 'redux/selectors';
-import { addContact } from 'redux/contactsSlice';
+import { addContact } from 'redux/operations';
 
-import PropTypes from 'prop-types';
 import css from './Form.module.css'
 
-function Form(props) {
+function Form() {
   const dispatch = useDispatch();
   const contacts = useSelector(getContacts);
  
@@ -71,7 +70,3 @@ function Form(props) {
   }
 
 export default Form;
-
-Form.propTypes = {
-  onSubmit: PropTypes.func.isRequired
-};

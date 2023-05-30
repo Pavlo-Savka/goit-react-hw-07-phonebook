@@ -7,7 +7,6 @@ const contactsInitialState = {
     isLoading: false,
     error: null
 };
-
 const contactsSlice = createSlice({
     name: 'contacts',
     initialState: contactsInitialState,
