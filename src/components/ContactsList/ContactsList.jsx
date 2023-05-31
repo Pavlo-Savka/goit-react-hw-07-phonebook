@@ -14,30 +14,28 @@ function ContactsList() {
   }, [dispatch]);
   
   const contacts = useSelector(getContacts);
-
-  
-  
   const filter = useSelector(getFilterValue);
 
   const filteredContacts = useMemo(() => {
-
-    if (contacts.length > 0) {
-      console.log(typeof (contacts));
-      console.log(contacts);
+   if (contacts) {
+    //   console.log(typeof (contacts));
+    //  console.log(contacts);
+  
       return contacts.filter((elem) => (elem.name.toLowerCase().includes(filter.toLowerCase())));
     }
-    }, [contacts, filter]);
-
+  }, [contacts, filter]);
+//  console.log(filteredContacts);
       return (
         <ul>
-          {filteredContacts.map((i) => (
-            <ContactItem
-              key={i.id}
-              id={i.id}
-              name={i.name}
-              number={i.number}
-            />
-          ))}
+            {filteredContacts.map((i) => (
+                <ContactItem
+                  key={i.id}
+                  id={i.id}
+                  name={i.name}
+                  number={i.phone}
+                />
+              ))
+            }
         </ul>);
        }
 

@@ -25,8 +25,7 @@ function Form() {
       return
     };
 
-    dispatch(addContact(name.value, number.value));
-
+    dispatch(addContact({ name: `${name.value}`, phone: `${number.value}` }));
     name.value = '';
     number.value = '';
   };
